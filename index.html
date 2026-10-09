@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="zh-Hans" data-lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Rep Counter 隐私政策</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* 布局：单栏阅读页，顶部是 App 身份条，正文前一张"数据一览"表，之后逐项说明 */
+:root {
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --fg: #142032;
+  --muted: #5a6a80;
+  --line: #dde4ee;
+  --accent: #1f6fd6;      /* App 图标里的蓝 */
+  --accent-2: #0f9e8f;    /* 图标渐变里的青绿 */
+  --warm: #e2781f;        /* 图标里手机的橙，只用在一处 */
+  --chip: #e8f0fb;
+  --font-display: "Sora", "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
+  --font-body: "Noto Sans SC", "PingFang SC", -apple-system, "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d141f; --surface: #142033; --fg: #e6edf7; --muted: #9aaac0; --line: #26354c;
+    --accent: #5c9cf0; --accent-2: #3cc7b6; --warm: #f0974a; --chip: #1b2c45;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d141f; --surface: #142033; --fg: #e6edf7; --muted: #9aaac0; --line: #26354c;
+  --accent: #5c9cf0; --accent-2: #3cc7b6; --warm: #f0974a; --chip: #1b2c45;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+}
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  padding-block: 40px 72px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+header.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.app {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.app svg { flex: none; border-radius: 13px; }
+.app-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.3;
+}
+.app-sub { color: var(--muted); font-size: 13px; }
+
+.lang {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  background: var(--surface);
+}
+.lang button {
+  font: inherit;
+  font-size: 13px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 4px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.lang button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 6vw, 42px);
+  line-height: 1.2;
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+.lede { font-size: 18px; color: var(--fg); margin: 0; max-width: 62ch; }
+.meta { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+
+.promise {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+}
+.promise div {
+  background: var(--chip);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.promise strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.35;
+  margin: 0 0 10px;
+  text-wrap: balance;
+}
+section p { margin: 0 0 12px; max-width: 65ch; }
+section p:last-child { margin-bottom: 0; }
+section ul { margin: 0; padding-left: 1.2em; max-width: 65ch; }
+section li + li { margin-top: 6px; }
+
+.table-wrap {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; line-height: 1.55; }
+th, td { text-align: left; padding: 12px 14px; vertical-align: top; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+}
+td:first-child { font-weight: 500; white-space: nowrap; }
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--accent);
+  white-space: nowrap;
+}
+.tag.never { color: var(--accent-2); }
+
+.note {
+  border-left: 3px solid var(--warm);
+  padding: 2px 0 2px 14px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.mail { color: var(--accent); user-select: all; word-break: break-all; }
+
+footer {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+[lang-zh], [lang-en] { display: none; }
+html[data-lang="zh"] [lang-zh], html[data-lang="en"] [lang-en] { display: revert; }
+</style>
+
+</head>
+<body>
+<div class="page">
+  <header class="top">
+    <div class="app">
+      <svg width="52" height="52" viewBox="0 0 100 100" aria-hidden="true">
+        <defs>
+          <linearGradient id="ic" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#19a7f0"/><stop offset="0.5" stop-color="#22c3e8"/>
+            <stop offset="0.62" stop-color="#ffd23f"/><stop offset="1" stop-color="#ff7a1a"/>
+          </linearGradient>
+        </defs>
+        <rect width="100" height="100" fill="url(#ic)"/>
+        <rect x="44" y="70" width="28" height="7" rx="3" fill="#ff8a1f" stroke="#ffffff" stroke-width="1.5"/>
+        <path d="M18 64 L66 46" stroke="#ffffff" stroke-width="11" stroke-linecap="round"/>
+        <path d="M66 46 L70 70" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="76" cy="42" r="10" fill="#ffffff"/>
+        <path d="M70 18 l6 7 l13 -15" fill="none" stroke="#3ccf3c" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="app-name"><span lang-zh>俯卧撑计数</span><span lang-en>Rep Counter</span></div>
+        <div class="app-sub">iPhone · Apple Watch · AirPods</div>
+      </div>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" id="btn-zh" data-set="zh" aria-pressed="true">中文</button>
+      <button type="button" id="btn-en" data-set="en" aria-pressed="false">English</button>
+    </div>
+  </header>
+
+  <div>
+    <h1><span lang-zh>隐私政策</span><span lang-en>Privacy Policy</span></h1>
+    <p class="lede">
+      <span lang-zh>俯卧撑计数用 iPhone、Apple Watch 和 AirPods 的传感器帮你计数、判断动作是否标准。你的训练数据只保存在你自己的设备上。</span>
+      <span lang-en>Rep Counter uses the sensors in your iPhone, Apple Watch and AirPods to count your reps and check your form. Your workout data stays on your own devices.</span>
+    </p>
+    <p class="meta"><span lang-zh>生效日期：2026 年 10 月 9 日</span><span lang-en>Effective October 9, 2026</span></p>
+  </div>
+
+  <div class="promise">
+    <div><strong lang-zh>不需要账号</strong><strong lang-en>No account</strong>
+      <span lang-zh>不注册、不登录。</span><span lang-en>No sign-up, no sign-in.</span></div>
+    <div><strong lang-zh>没有服务器</strong><strong lang-en>No servers</strong>
+      <span lang-zh>App 不把任何数据发给开发者或第三方。</span><span lang-en>Nothing is sent to the developer or any third party.</span></div>
+    <div><strong lang-zh>没有广告和统计</strong><strong lang-en>No ads or analytics</strong>
+      <span lang-zh>不含广告 SDK，不做行为追踪。</span><span lang-en>No ad SDKs, no tracking.</span></div>
+    <div><strong lang-zh>不保存图像</strong><strong lang-en>No images kept</strong>
+      <span lang-zh>不拍照、不录像，深度数据用完即弃。</span><span lang-en>No photos or video; depth data is discarded after use.</span></div>
+  </div>
+
+  <section>
+    <h2><span lang-zh>数据一览</span><span lang-en>Data at a Glance</span></h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th><span lang-zh>数据</span><span lang-en>Data</span></th>
+            <th><span lang-zh>用来做什么</span><span lang-en>What it's for</span></th>
+            <th><span lang-zh>保存在哪里</span><span lang-en>Where it's kept</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span lang-zh>前置 TrueDepth 深度数据</span><span lang-en>Front TrueDepth depth data</span></td>
+            <td><span lang-zh>测量胸口与手机的距离和身体角度，给俯卧撑计数、给平板支撑计时并判断姿势</span><span lang-en>Measures chest-to-phone distance and body angle to count push-ups, time planks and check form</span></td>
+            <td><span class="tag never" lang-zh>不保存</span><span class="tag never" lang-en>Not stored</span></td>
+          </tr>
+          <tr>
+            <td><span lang-zh>AirPods 头部运动</span><span lang-en>AirPods head motion</span></td>
+            <td><span lang-zh>根据头部抬起的角度识别仰卧起坐</span><span lang-en>Recognizes sit-ups from how far your head lifts</span></td>
+            <td><span class="tag never" lang-zh>不保存</span><span class="tag never" lang-en>Not stored</span></td>
+          </tr>
+          <tr>
+            <td><span lang-zh>iPhone 与 Apple Watch 运动数据</span><span lang-en>iPhone and Apple Watch motion</span></td>
+            <td><span lang-zh>iPhone 水平仪；手表识别深蹲、开合跳，并在不用手机时计数俯卧撑、计时平板支撑</span><span lang-en>iPhone level; on the Watch, recognizes squats and jumping jacks, and counts push-ups and times planks without the phone</span></td>
+            <td><span class="tag never" lang-zh>不保存</span><span class="tag never" lang-en>Not stored</span></td>
+          </tr>
+          <tr>
+            <td><span lang-zh>训练记录</span><span lang-en>Workout history</span></td>
+            <td><span lang-zh>历史、总计、每日目标进度、小组件</span><span lang-en>History, totals, daily goal progress, widgets</span></td>
+            <td><span class="tag" lang-zh>你的 iPhone 和手表</span><span class="tag" lang-en>Your iPhone and Watch</span></td>
+          </tr>
+          <tr>
+            <td><span lang-zh>体重、每日目标、偏好设置</span><span lang-en>Weight, daily goals, preferences</span></td>
+            <td><span lang-zh>估算消耗的卡路里，显示目标进度，记住语言等设置</span><span lang-en>Estimate calories, show goal progress, remember language and other settings</span></td>
+            <td><span class="tag" lang-zh>你的 iPhone 和手表</span><span class="tag" lang-en>Your iPhone and Watch</span></td>
+          </tr>
+          <tr>
+            <td><span lang-zh>健康数据</span><span lang-en>Health data</span></td>
+            <td><span lang-zh>写入训练（时长、心率、活动能量）；读取心率、活动能量，你选择导入时读取体重</span><span lang-en>Save workouts (duration, heart rate, active energy); read heart rate, active energy, and weight if you choose to import it</span></td>
+            <td><span class="tag" lang-zh>Apple 健康 App</span><span class="tag" lang-en>Apple Health</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2><span lang-zh>摄像头</span><span lang-en>Camera</span></h2>
+    <p lang-zh>只有在你开始俯卧撑或平板支撑训练后，App 才会打开 iPhone 的前置 TrueDepth 摄像头，并且只读取深度数据。每一帧在手机上实时算出距离和角度后立即丢弃。App 不拍照、不录像，不保存也不上传任何图像或深度数据。训练结束后摄像头随即关闭。</p>
+    <p lang-en>The app turns on the iPhone's front TrueDepth camera only after you start a push-up or plank workout, and it reads only depth data. Each frame is turned into a distance and an angle on the phone and then discarded. The app takes no photos or videos and never stores or uploads images or depth data. The camera turns off when the workout ends.</p>
+  </section>
+
+  <section>
+    <h2><span lang-zh>运动传感器</span><span lang-en>Motion Sensors</span></h2>
+    <ul lang-zh>
+      <li>iPhone 的运动数据用于训练前的水平仪，帮你把手机放平。</li>
+      <li>AirPods（Pro、第 3 代及以后、Max）的头部运动数据用于识别仰卧起坐。</li>
+      <li>Apple Watch 的运动数据用于识别深蹲、开合跳，以及在不用手机时计数俯卧撑、计时平板支撑。</li>
+    </ul>
+    <ul lang-en>
+      <li>iPhone motion data powers the level that helps you lay the phone flat before a workout.</li>
+      <li>Head motion from AirPods (Pro, 3rd generation or later, Max) is used to recognize sit-ups.</li>
+      <li>Apple Watch motion data recognizes squats and jumping jacks, and counts push-ups and times planks when you're not using the phone.</li>
+    </ul>
+    <p lang-zh>这些原始传感器数据只在训练过程中实时使用，不会被保存。App 只记录结果，比如个数、用时和哪些动作不标准。</p>
+    <p lang-en>Raw sensor data is used only in real time during a workout and is not stored. The app keeps only the results, such as rep counts, duration and which reps had form issues.</p>
+  </section>
+
+  <section>
+    <h2><span lang-zh>健康 App</span><span lang-en>Apple Health</span></h2>
+    <p lang-zh>经你在系统弹窗中授权后，App 会把训练写入健康 App，包括训练类型、时长、心率和活动能量；会读取训练期间的心率和活动能量，用来显示实时心率和消耗；只有在你点击「从健康 App 读取体重」时才会读取体重。</p>
+    <p lang-en>With your permission in the system prompt, the app saves workouts to Health, including workout type, duration, heart rate and active energy. It reads heart rate and active energy during workouts to show live heart rate and calories, and reads your weight only when you tap "Read Weight from Health".</p>
+    <p lang-zh>健康数据不会离开你的设备，不会用于广告或营销，也不会出售或提供给任何第三方。你可以随时在 iPhone 的「设置 › 健康 › 数据访问与设备」里更改授权。</p>
+    <p lang-en>Health data never leaves your devices, is never used for advertising or marketing, and is never sold or shared with any third party. You can change these permissions at any time in iPhone Settings › Health › Data Access & Devices.</p>
+  </section>
+
+  <section>
+    <h2><span lang-zh>iPhone 与 Apple Watch 之间的同步</span><span lang-en>Sync Between iPhone and Apple Watch</span></h2>
+    <p lang-zh>训练记录、每日目标、体重、深蹲校准结果和语言设置，通过 Apple 的 WatchConnectivity 在你的 iPhone 和与之配对的 Apple Watch 之间直接传输，不经过开发者或任何第三方的服务器。</p>
+    <p lang-en>Workout history, daily goals, weight, squat calibration and language settings are transferred directly between your iPhone and its paired Apple Watch using Apple's WatchConnectivity. They never pass through the developer's or any third party's servers.</p>
+  </section>
+
+  <section>
+    <h2><span lang-zh>小组件</span><span lang-en>Widgets</span></h2>
+    <p lang-zh>桌面小组件和表盘小组件会显示今天的目标进度、最近 7 天的训练量和消耗的卡路里。这些摘要保存在设备上 App 与小组件共用的存储空间里，不会发送到其他地方。小组件出现在锁屏或表盘上时，旁人可能看到这些数字。</p>
+    <p lang-en>Home Screen and watch face widgets show today's goal progress, the last 7 days of activity and calories burned. This summary is kept in storage shared by the app and its widgets on your device and is not sent anywhere. If you place a widget on your Lock Screen or watch face, people nearby may see these numbers.</p>
+  </section>
+
+  <section>
+    <h2><span lang-zh>导出与删除</span><span lang-en>Export and Deletion</span></h2>
+    <ul lang-zh>
+      <li>在 App 的「设置 › 导出历史」可以把全部训练记录导出为 CSV 表格。文件由你自己决定分享到哪里。</li>
+      <li>在「设置 › 清除所有记录」可以一次删除 iPhone 和手表上的全部记录，删除后无法恢复。</li>
+      <li>删除 App 会同时删除它在设备上保存的所有数据。</li>
+      <li>已经写入健康 App 的训练不受上述操作影响，需要在健康 App 中删除。</li>
+    </ul>
+    <ul lang-en>
+      <li>In Settings › Export History you can export all workouts as a CSV file. You decide where that file goes.</li>
+      <li>In Settings › Delete All History you can delete every record on both iPhone and Watch at once. This can't be undone.</li>
+      <li>Deleting the app removes all data it stored on your devices.</li>
+      <li>Workouts already saved to Apple Health are not affected by any of the above and must be deleted in the Health app.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span lang-zh>权限</span><span lang-en>Permissions</span></h2>
+    <p lang-zh>摄像头、运动与健身、健康数据都需要你在系统弹窗中同意后才会使用。你可以随时在 iPhone 的「设置」里关闭任意一项；关闭后，依赖它的训练功能将无法使用，其他功能不受影响。</p>
+    <p lang-en>The camera, Motion & Fitness and Health data are used only after you allow them in the system prompt. You can turn any of them off at any time in iPhone Settings; features that depend on that permission will stop working, and everything else keeps working.</p>
+  </section>
+
+  <section>
+    <h2><span lang-zh>儿童隐私</span><span lang-en>Children's Privacy</span></h2>
+    <p lang-zh>App 不收集任何人的个人信息，也不会有意收集儿童的个人信息。</p>
+    <p lang-en>The app does not collect personal information from anyone, and it does not knowingly collect personal information from children.</p>
+  </section>
+
+  <section>
+    <h2><span lang-zh>政策变更</span><span lang-en>Changes to This Policy</span></h2>
+    <p lang-zh>如果本政策有变化，会更新本页面和页首的生效日期；重要变化会同时在 App 内的隐私政策中说明。</p>
+    <p lang-en>If this policy changes, this page and its effective date will be updated. Significant changes will also be noted in the privacy policy inside the app.</p>
+  </section>
+
+  <section>
+    <h2><span lang-zh>联系我们</span><span lang-en>Contact</span></h2>
+    <p lang-zh>对本政策有任何疑问，请发邮件至 <a class="mail" href="mailto:mixmin2000@gmail.com">mixmin2000@gmail.com</a>。</p>
+    <p lang-en>If you have questions about this policy, email <a class="mail" href="mailto:mixmin2000@gmail.com">mixmin2000@gmail.com</a>.</p>
+  </section>
+
+  <footer>
+    <span lang-zh>© 2026 俯卧撑计数</span><span lang-en>© 2026 Rep Counter</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function pick() {
+    var h = (location.hash || "").replace("#", "");
+    if (h === "en" || h === "zh") return h;
+    try { var saved = localStorage.getItem("privacy-lang"); if (saved === "en" || saved === "zh") return saved; } catch (e) {}
+    var nav = (navigator.language || "zh").toLowerCase();
+    return nav.indexOf("zh") === 0 ? "zh" : "en";
+  }
+  function apply(lang) {
+    root.setAttribute("data-lang", lang);
+    root.setAttribute("lang", lang === "zh" ? "zh-Hans" : "en");
+    document.title = lang === "zh" ? "俯卧撑计数 隐私政策" : "Rep Counter Privacy Policy";
+    document.getElementById("btn-zh").setAttribute("aria-pressed", lang === "zh");
+    document.getElementById("btn-en").setAttribute("aria-pressed", lang === "en");
+  }
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var lang = b.getAttribute("data-set");
+      apply(lang);
+      try { localStorage.setItem("privacy-lang", lang); } catch (e) {}
+    });
+  });
+  apply(pick());
+})();
+</script>
+
+</body>
+</html>
