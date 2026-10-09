@@ -180,8 +180,8 @@ footer {
   font-size: 13px;
 }
 
-[lang-zh], [lang-en] { display: none; }
-html[data-lang="zh"] [lang-zh], html[data-lang="en"] [lang-en] { display: revert; }
+[lang-zh], [lang-en] { display: none !important; }
+html[data-lang="zh"] [lang-zh], html[data-lang="en"] [lang-en] { display: revert !important; }
 </style>
 
 </head>
@@ -224,13 +224,13 @@ html[data-lang="zh"] [lang-zh], html[data-lang="en"] [lang-en] { display: revert
   </div>
 
   <div class="promise">
-    <div><strong lang-zh>不需要账号</strong><strong lang-en>No account</strong>
+    <div><strong><span lang-zh>不需要账号</span><span lang-en>No account</span></strong>
       <span lang-zh>不注册、不登录。</span><span lang-en>No sign-up, no sign-in.</span></div>
-    <div><strong lang-zh>没有服务器</strong><strong lang-en>No servers</strong>
+    <div><strong><span lang-zh>没有服务器</span><span lang-en>No servers</span></strong>
       <span lang-zh>App 不把任何数据发给开发者或第三方。</span><span lang-en>Nothing is sent to the developer or any third party.</span></div>
-    <div><strong lang-zh>没有广告和统计</strong><strong lang-en>No ads or analytics</strong>
+    <div><strong><span lang-zh>没有广告和统计</span><span lang-en>No ads or analytics</span></strong>
       <span lang-zh>不含广告 SDK，不做行为追踪。</span><span lang-en>No ad SDKs, no tracking.</span></div>
-    <div><strong lang-zh>不保存图像</strong><strong lang-en>No images kept</strong>
+    <div><strong><span lang-zh>不保存图像</span><span lang-en>No images kept</span></strong>
       <span lang-zh>不拍照、不录像，深度数据用完即弃。</span><span lang-en>No photos or video; depth data is discarded after use.</span></div>
   </div>
 
