@@ -180,6 +180,32 @@ footer {
   font-size: 13px;
 }
 
+/* 右下角"联系开发者"胶囊 */
+.contact-pill {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px 11px 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(20, 50, 100, 0.28);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  z-index: 10;
+}
+.contact-pill:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(20, 50, 100, 0.34); }
+.contact-pill:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 3px; }
+.contact-pill svg { flex: none; }
+@media (prefers-reduced-motion: reduce) { .contact-pill { transition: none; } .contact-pill:hover { transform: none; } }
+/* 留出胶囊的位置，页脚不被挡住 */
+footer { padding-bottom: 56px; }
+
 [lang-zh], [lang-en] { display: none !important; }
 html[data-lang="zh"] [lang-zh], html[data-lang="en"] [lang-en] { display: revert !important; }
 </style>
@@ -368,6 +394,11 @@ html[data-lang="zh"] [lang-zh], html[data-lang="en"] [lang-en] { display: revert
   </footer>
 </div>
 
+<a class="contact-pill" href="mailto:mixmin2000@gmail.com?subject=%E4%BF%AF%E5%8D%A7%E6%92%91%E8%AE%A1%E6%95%B0%20%E5%8F%8D%E9%A6%88" title="mixmin2000@gmail.com">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+  <span lang-zh>联系开发者</span><span lang-en>Contact Developer</span>
+</a>
+
 <script>
 (function () {
   var root = document.documentElement;
@@ -384,6 +415,8 @@ html[data-lang="zh"] [lang-zh], html[data-lang="en"] [lang-en] { display: revert
     document.title = lang === "zh" ? "俯卧撑计数 隐私政策" : "Rep Counter Privacy Policy";
     document.getElementById("btn-zh").setAttribute("aria-pressed", lang === "zh");
     document.getElementById("btn-en").setAttribute("aria-pressed", lang === "en");
+    var subject = lang === "zh" ? "俯卧撑计数 反馈" : "Rep Counter Feedback";
+    document.querySelector(".contact-pill").href = "mailto:mixmin2000@gmail.com?subject=" + encodeURIComponent(subject);
   }
   document.querySelectorAll(".lang button").forEach(function (b) {
     b.addEventListener("click", function () {
